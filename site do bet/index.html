@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄Feliz Natal🎄</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+        }
+
+        /* Estrelas */
+        .stars {
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        /* Neve */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0.2;
+            }
+        }
+
+        /* Trenó (sem brilho) */
+        .sleigh {
+            position: absolute;
+            top: 100px;
+            left: -300px;
+            width: 250px;
+            z-index: 2;
+            animation: fly 8s linear;
+            filter: none; /* garante que não há brilho */
+            opacity: 1; /* mantém a imagem sólida */
+        }
+
+        @keyframes fly {
+            0% { left: -300px; top: 120px; opacity: 0; }
+            10% { opacity: 1; }
+            50% { top: 80px; }
+            100% { left: 110%; top: 100px; opacity: 0; }
+        }
+
+        center {
+            position: relative;
+            z-index: 3;
+            top: 30%;
+        }
+
+        /* Árvore */
+        .tree {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        /* Título brilhante */
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(45deg, #ff0000, #ffd700, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        /* Luzes decorativas */
+        .lights {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: -20px;
+        }
+
+        .light {
+            width: 10px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            box-shadow: 0 0 15px red;
+        }
+
+        .light:nth-child(2) { background-color: green; box-shadow: 0 0 15px green; }
+        .light:nth-child(3) { background-color: yellow; box-shadow: 0 0 15px yellow; }
+        .light:nth-child(4) { background-color: blue; box-shadow: 0 0 15px blue; }
+        .light:nth-child(5) { background-color: orange; box-shadow: 0 0 15px orange; }
+
+        h2 {
+            color: #fffacd;
+            font-weight: normal;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <img src="https://pngimg.com/uploads/christmas_tree/christmas_tree_PNG107.png" alt="Árvore de Natal" class="tree">
+
+    <center>
+        <h1>🎅Feliz Natal🎅</h1>
+        <div class="lights">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+        </div>
+        <h2>⭐Ilumine o mundo com a sua alegria — o espírito do Natal começa em você!⭐</h2>
+    </center>
+
+    <script>
+        // Criar neve
+        const snowCount = 100;
+        for (let i = 0; i < snowCount; i++) {
+            const snow = document.createElement('div');
+            snow.classList.add('snowflake');
+            snow.textContent = '❄';
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            snow.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+        }
+
+        // Trenó do Papai Noel (sem brilho)
+        function createSleigh() {
+            const sleigh = document.createElement('img');
+            sleigh.src = 'https://i.imgur.com/bH1dJdY.png'; // imagem do trenó
+            sleigh.classList.add('sleigh');
+            document.body.appendChild(sleigh);
+
+            // remover após 8 segundos
+            setTimeout(() => sleigh.remove(), 8000);
+        }
+
+        createSleigh(); // primeira passagem
+        setInterval(createSleigh, 30000); // a cada 30 segundos
+    </script>
+</body>
+</html>
